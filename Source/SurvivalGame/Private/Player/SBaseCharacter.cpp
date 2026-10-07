@@ -104,7 +104,7 @@ bool ASBaseCharacter::CanDie(float KillingDamage, FDamageEvent const& DamageEven
 {
 	/* Check if character is already dying, destroyed or if we have authority */
 	if (bIsDying ||
-		IsPendingKill() ||
+		!IsValid(this) ||
 		!HasAuthority() ||
 		GetWorld()->GetAuthGameMode() == NULL)
 	{
@@ -135,7 +135,7 @@ bool ASBaseCharacter::Die(float KillingDamage, FDamageEvent const& DamageEvent, 
 	Killer = GetDamageInstigator(Killer, *DamageType);
 
 	/* Notify the gamemode we got killed for scoring and game over state */
-	AController* KilledPlayer = Controller ? Controller : Cast<AController>(GetOwner());
+	AController* KilledPlayer = Controller ? (AController*)Controller.Get() : Cast<AController>(GetOwner());
 	GetWorld()->GetAuthGameMode<ASGameMode>()->Killed(Killer, KilledPlayer, this, DamageType);
 
 	OnDeath(KillingDamage, DamageEvent, Killer ? Killer->GetPawn() : NULL, DamageCauser);
@@ -196,7 +196,7 @@ void ASBaseCharacter::SetRagdollPhysics()
 	bool bInRagdoll = false;
 	USkeletalMeshComponent* Mesh3P = GetMesh();
 
-	if (IsPendingKill())
+	if (!IsValid(this))
 	{
 		bInRagdoll = false;
 	}

@@ -133,10 +133,11 @@ void ASTimeOfDayManager::UpdateSkylight()
 
 			//UE_LOG(LogTemp, Warning, TEXT("Time of day alpha: %s"), *FString::SanitizeFloat(Alpha));
 
-			FVector LightColor = SkyLightActor->GetLightComponent()->GetLightColor();
+			FLinearColor LightColor = SkyLightActor->GetLightComponent()->GetLightColor();
 			if (SkylightColorCurve)
 			{
-				LightColor = SkylightColorCurve->GetVectorValue(Alpha);
+				FVector CurveColor = SkylightColorCurve->GetVectorValue(Alpha);
+				LightColor = FLinearColor(CurveColor.X, CurveColor.Y, CurveColor.Z);
 			}
 			SkyLightActor->GetLightComponent()->SetLightColor(LightColor);
 		}

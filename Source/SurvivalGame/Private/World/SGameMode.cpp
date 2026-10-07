@@ -441,7 +441,7 @@ void ASGameMode::InitGame(const FString& MapName, const FString& Options, FStrin
 	for (TActorIterator<AActor> It(GetWorld(), AActor::StaticClass()); It; ++It)
 	{
 		AActor* Actor = *It;
-		if (!Actor->IsPendingKill())
+		if (IsValid(Actor))
 		{
 			// Some classes can't be removed via mutators
 			bool bIsValidClass = !Actor->IsA(ALevelScriptActor::StaticClass()) && !Actor->IsA(ASMutator::StaticClass());
