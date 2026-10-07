@@ -1,6 +1,6 @@
-# Survival Game Framework
+# Forsaken Terra: Isolation
 
-A third-person multiplayer survival RPG framework built in **Unreal Engine 5 (C++)** by **Vivekanand Rajbhar (WebSpider Studios)**.
+A multiplayer wilderness survival RPG framework built in **Unreal Engine 5 (C++)** by **Vivekanand Rajbhar (WebSpider Studios)**.
 
 This project was built to establish an open-world survival game loop: managing character vitals (hunger, thirst, stamina), drag-and-drop replicated inventory, equippable firearms, dynamic day/night cycles, and hostile sensor-driven zombie AI.
 
@@ -54,7 +54,7 @@ Source/SurvivalGame/
 ### Steps
 1. Clone the repository:
    ```bash
-   git clone https://github.com/VR-WebSpider/SurvivalGameFramework.git
+   git clone https://github.com/VR-WebSpider/ForsakenTerra.git
    ```
 2. Right-click `SurvivalGame.uproject` → **Generate Visual Studio project files**.
 3. Open `SurvivalGame.sln` in Visual Studio 2022.
